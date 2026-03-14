@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer+ — AI-Powered 3D CAD Generation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; color: #1d1d1f; background: #fff; }
+        a { color: #0071e3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .hero {
+            min-height: 80vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 60px 24px;
+            background: linear-gradient(180deg, #e8f4fd 0%, #ffffff 100%);
+        }
+        .hero-icon {
+            width: 120px; height: 120px; border-radius: 28px;
+            background: linear-gradient(135deg, #4fc3f7 0%, #0071e3 100%);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 32px; box-shadow: 0 8px 30px rgba(0,113,227,0.25);
+        }
+        .hero-icon svg { width: 64px; height: 64px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+        .subtitle { font-size: 21px; color: #6e6e73; max-width: 500px; line-height: 1.5; margin-bottom: 40px; }
+        .badge {
+            display: inline-block; padding: 14px 32px; background: #0071e3; color: #fff;
+            border-radius: 12px; font-size: 17px; font-weight: 600;
+            transition: background 0.2s;
+        }
+        .badge:hover { background: #0077ed; text-decoration: none; }
+
+        .features {
+            max-width: 800px; margin: 0 auto; padding: 80px 24px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+        .feature { text-align: center; }
+        .feature-icon { font-size: 36px; margin-bottom: 12px; }
+        .feature h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
+        .feature p { font-size: 15px; color: #6e6e73; line-height: 1.5; }
+
+        .pricing {
+            text-align: center; padding: 60px 24px;
+            background: #f5f5f7;
+        }
+        .pricing h2 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .pricing .price { font-size: 48px; font-weight: 700; color: #0071e3; margin: 16px 0 4px; }
+        .pricing .period { font-size: 17px; color: #6e6e73; margin-bottom: 8px; }
+        .pricing .trial { font-size: 15px; color: #1d1d1f; margin-bottom: 32px; }
+
+        footer {
+            text-align: center; padding: 40px 24px;
+            font-size: 14px; color: #86868b;
+        }
+        footer a { color: #86868b; margin: 0 12px; }
+        footer a:hover { color: #1d1d1f; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 32px; }
+            .subtitle { font-size: 17px; }
+            .features { grid-template-columns: 1fr; gap: 32px; }
+            .pricing .price { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-icon">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8L56 20V44L32 56L8 44V20L32 8Z" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M32 8L32 56" stroke="white" stroke-width="3"/>
+            <path d="M8 20L56 44" stroke="white" stroke-width="3"/>
+            <path d="M56 20L8 44" stroke="white" stroke-width="3"/>
+            <text x="52" y="12" fill="white" font-size="16" font-weight="700">+</text>
+        </svg>
+    </div>
+    <h1>Designer+</h1>
+    <p class="subtitle">Turn words and photos into 3D CAD models instantly. Powered by AI, built for makers.</p>
+    <a href="https://apps.apple.com" class="badge">Download on the App Store</a>
+</section>
+
+<section class="features">
+    <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>Text to 3D</h3>
+        <p>Describe any part with dimensions and watch it appear as a real CAD model in seconds.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">📸</div>
+        <h3>Photo to 3D</h3>
+        <p>Snap a photo of a sketch or object and let AI recreate it as 3D geometry.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">📐</div>
+        <h3>Real CAD Engine</h3>
+        <p>Uses OpenCascade — the same kernel behind professional CAD tools — running on your device.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">📤</div>
+        <h3>Export Anywhere</h3>
+        <p>Save and share your models as STL for 3D printing or OBJ for general use.</p>
+    </div>
+</section>
+
+<section class="pricing">
+    <h2>Simple Pricing</h2>
+    <div class="price">$4.99</div>
+    <div class="period">per month</div>
+    <div class="trial">Start with a 2-day free trial. Cancel anytime.</div>
+</section>
+
+<footer>
+    <p style="margin-bottom: 12px;">&copy; 2026 Designer+. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="mailto:mattpeshapps@gmail.com">Contact</a>
+</footer>
+
+</body>
+</html>
