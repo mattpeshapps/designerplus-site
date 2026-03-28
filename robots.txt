@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mattpeshapps.github.io/designerplus-site/sitemap.xml

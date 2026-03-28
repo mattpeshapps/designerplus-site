@@ -3,7 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Designer+ — AI-Powered 3D CAD Generation</title>
+    <title>Designer+ — Text to CAD | AI-Powered 3D Model Generator for iPhone & iPad</title>
+    <meta name="description" content="Turn text descriptions and photos into real 3D CAD models with Designer+. AI-powered text-to-CAD generator with STL and OBJ export for 3D printing. Available on iPhone and iPad.">
+    <meta name="keywords" content="text to CAD, AI CAD generator, 3D model generator, text to 3D, photo to 3D, STL export, OBJ export, 3D printing app, CAD app iPhone, CAD app iPad, AI 3D modeling, sketch to CAD, Designer+">
+    <meta name="author" content="Matthew Peschisolido">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mattpeshapps.github.io/designerplus-site/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Designer+ — Text to CAD | AI 3D Model Generator">
+    <meta property="og:description" content="Describe a part or photograph a sketch — AI generates a real 3D CAD model in seconds. Export STL & OBJ for 3D printing.">
+    <meta property="og:url" content="https://mattpeshapps.github.io/designerplus-site/">
+    <meta property="og:site_name" content="Designer+">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Designer+ — Text to CAD | AI 3D Model Generator">
+    <meta name="twitter:description" content="Describe a part or photograph a sketch — AI generates a real 3D CAD model in seconds. Export STL & OBJ for 3D printing.">
+
+    <meta name="apple-itunes-app" content="app-id=6760601644">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Designer+",
+        "operatingSystem": "iOS",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "AI-powered text-to-CAD and photo-to-CAD 3D model generator. Describe parts in plain English or photograph sketches to generate real solid 3D models. Export as STL for 3D printing or OBJ.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "3 free designs, then $4.99/month"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        },
+        "url": "https://apps.apple.com/app/designer/id6760601644"
+    }
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; color: #1d1d1f; background: #fff; }
@@ -24,7 +65,7 @@
         }
         .hero-icon svg { width: 64px; height: 64px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
-        .subtitle { font-size: 21px; color: #6e6e73; max-width: 500px; line-height: 1.5; margin-bottom: 40px; }
+        .subtitle { font-size: 21px; color: #6e6e73; max-width: 540px; line-height: 1.5; margin-bottom: 40px; }
         .badge {
             display: inline-block; padding: 14px 32px; background: #0071e3; color: #fff;
             border-radius: 12px; font-size: 17px; font-weight: 600;
@@ -32,14 +73,40 @@
         }
         .badge:hover { background: #0077ed; text-decoration: none; }
 
+        .how-it-works {
+            max-width: 700px; margin: 0 auto; padding: 60px 24px 20px;
+            text-align: center;
+        }
+        .how-it-works h2 { font-size: 32px; font-weight: 700; margin-bottom: 32px; }
+        .steps {
+            display: flex; gap: 32px; justify-content: center;
+        }
+        .step {
+            flex: 1; text-align: center;
+        }
+        .step-num {
+            width: 40px; height: 40px; border-radius: 50%; background: #0071e3; color: #fff;
+            font-size: 18px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 12px;
+        }
+        .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+        .step p { font-size: 14px; color: #6e6e73; line-height: 1.5; }
+
         .features {
-            max-width: 800px; margin: 0 auto; padding: 80px 24px;
+            max-width: 800px; margin: 0 auto; padding: 60px 24px;
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
         }
         .feature { text-align: center; }
         .feature-icon { font-size: 36px; margin-bottom: 12px; }
         .feature h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
         .feature p { font-size: 15px; color: #6e6e73; line-height: 1.5; }
+
+        .use-cases {
+            max-width: 800px; margin: 0 auto; padding: 40px 24px 60px;
+            text-align: center;
+        }
+        .use-cases h2 { font-size: 32px; font-weight: 700; margin-bottom: 24px; }
+        .use-cases p { font-size: 17px; color: #6e6e73; line-height: 1.7; max-width: 600px; margin: 0 auto; }
 
         .pricing {
             text-align: center; padding: 60px 24px;
@@ -49,6 +116,12 @@
         .pricing .price { font-size: 48px; font-weight: 700; color: #0071e3; margin: 16px 0 4px; }
         .pricing .period { font-size: 17px; color: #6e6e73; margin-bottom: 8px; }
         .pricing .trial { font-size: 15px; color: #1d1d1f; margin-bottom: 32px; }
+        .pricing .cta {
+            display: inline-block; padding: 14px 32px; background: #0071e3; color: #fff;
+            border-radius: 12px; font-size: 17px; font-weight: 600;
+            transition: background 0.2s;
+        }
+        .pricing .cta:hover { background: #0077ed; text-decoration: none; }
 
         footer {
             text-align: center; padding: 40px 24px;
@@ -61,6 +134,7 @@
             h1 { font-size: 32px; }
             .subtitle { font-size: 17px; }
             .features { grid-template-columns: 1fr; gap: 32px; }
+            .steps { flex-direction: column; gap: 24px; }
             .pricing .price { font-size: 36px; }
         }
     </style>
@@ -78,38 +152,75 @@
         </svg>
     </div>
     <h1>Designer+</h1>
-    <p class="subtitle">Turn words and photos into 3D CAD models instantly. Powered by AI, built for makers.</p>
-    <a href="https://apps.apple.com" class="badge">Download on the App Store</a>
+    <p class="subtitle">The fastest way to turn text and photos into real 3D CAD models. Describe a part, snap a sketch, and export for 3D printing — all from your iPhone or iPad.</p>
+    <a href="https://apps.apple.com/app/designer/id6760601644" class="badge">Download on the App Store</a>
+</section>
+
+<section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <h3>Describe or Photograph</h3>
+            <p>Type a part description with dimensions, or snap a photo of a sketch or object.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <h3>AI Generates Your Model</h3>
+            <p>AI creates a precise 3D solid model using a professional CAD engine — right on your device.</p>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <h3>Export &amp; Print</h3>
+            <p>Save as STL for 3D printing or OBJ for any CAD software. Share directly from your phone.</p>
+        </div>
+    </div>
 </section>
 
 <section class="features">
     <div class="feature">
         <div class="feature-icon">💬</div>
-        <h3>Text to 3D</h3>
-        <p>Describe any part with dimensions and watch it appear as a real CAD model in seconds.</p>
+        <h3>Text to CAD</h3>
+        <p>Describe any part in plain English with dimensions. AI turns your words into precise 3D geometry.</p>
     </div>
     <div class="feature">
         <div class="feature-icon">📸</div>
-        <h3>Photo to 3D</h3>
-        <p>Snap a photo of a sketch or object and let AI recreate it as 3D geometry.</p>
+        <h3>Photo to CAD</h3>
+        <p>Photograph a sketch on paper or an existing object. AI recreates it as a real 3D CAD model.</p>
     </div>
     <div class="feature">
         <div class="feature-icon">📐</div>
-        <h3>Real CAD Engine</h3>
-        <p>Uses OpenCascade — the same kernel behind professional CAD tools — running on your device.</p>
+        <h3>Professional CAD Engine</h3>
+        <p>Built on a solid modeling kernel used in professional CAD tools. Real geometry, not rough meshes.</p>
     </div>
     <div class="feature">
         <div class="feature-icon">📤</div>
-        <h3>Export Anywhere</h3>
-        <p>Save and share your models as STL for 3D printing or OBJ for general use.</p>
+        <h3>STL &amp; OBJ Export</h3>
+        <p>Export your models for 3D printing (STL) or import into any CAD tool (OBJ). Share directly from the app.</p>
     </div>
+    <div class="feature">
+        <div class="feature-icon">💾</div>
+        <h3>Parts Library</h3>
+        <p>Save every model you generate. Browse, export, and manage your designs in one place.</p>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>iPhone &amp; iPad</h3>
+        <p>Optimized layouts for both devices. Side-by-side design view on iPad for a desktop-like experience.</p>
+    </div>
+</section>
+
+<section class="use-cases">
+    <h2>Built for Makers</h2>
+    <p>Whether you're a mechanical engineer prototyping parts, a maker designing 3D prints, a student learning CAD, or anyone who needs a quick 3D model without complex desktop software — Designer+ gets you from idea to exportable file in seconds.</p>
 </section>
 
 <section class="pricing">
     <h2>Simple Pricing</h2>
     <div class="price">$4.99</div>
     <div class="period">per month</div>
-    <div class="trial">Start with a 2-day free trial. Cancel anytime.</div>
+    <div class="trial">3 free designs to try everything. No account needed. Cancel anytime.</div>
+    <a href="https://apps.apple.com/app/designer/id6760601644" class="cta">Get Designer+</a>
 </section>
 
 <footer>
