@@ -45,12 +45,15 @@
     }
     </script>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; color: #1d1d1f; background: #fff; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; color: #1d1d1f; background: #fff; -webkit-font-smoothing: antialiased; }
         a { color: #0071e3; text-decoration: none; }
         a:hover { text-decoration: underline; }
 
+        /* ─── HERO ─── */
         .hero {
             min-height: 80vh;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -73,6 +76,7 @@
         }
         .badge:hover { background: #0077ed; text-decoration: none; }
 
+        /* ─── HOW IT WORKS ─── */
         .how-it-works {
             max-width: 700px; margin: 0 auto; padding: 60px 24px 20px;
             text-align: center;
@@ -92,6 +96,291 @@
         .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
         .step p { font-size: 14px; color: #6e6e73; line-height: 1.5; }
 
+        /* ═══════════════════════════════════════════════════════ */
+        /* ─── ANIMATED DEMO SECTION ─── */
+        /* ═══════════════════════════════════════════════════════ */
+        .demo-section {
+            background: linear-gradient(180deg, #0a0a1a 0%, #0f1b3d 50%, #0a0a1a 100%);
+            padding: 80px 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        .demo-section .section-label {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4fc3f7;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 12px;
+        }
+        .demo-section h2 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        /* Animated grid bg */
+        .demo-bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,113,227,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,113,227,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Demo container */
+        .demo-container {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─ Phone Mockup ─ */
+        .demo-phone {
+            width: 320px;
+            min-width: 320px;
+            background: #f5f5f7;
+            border-radius: 36px;
+            padding: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .demo-phone-notch {
+            width: 110px; height: 24px;
+            background: #000; border-radius: 0 0 12px 12px;
+            margin: 0 auto 10px;
+        }
+        .demo-phone-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 0 6px; margin-bottom: 8px;
+        }
+        .demo-phone-header h3 { font-size: 15px; font-weight: 700; color: #1d1d1f; }
+        .demo-engine-badge { display: flex; align-items: center; gap: 4px; font-size: 9px; color: #86868b; }
+        .demo-engine-dot { width: 5px; height: 5px; border-radius: 50%; background: #34c759; display: inline-block; }
+        .demo-status-chip {
+            padding: 3px 8px; border-radius: 16px; font-size: 9px; font-weight: 600;
+            background: rgba(0,113,227,0.1); color: #0071e3;
+            opacity: 0; transition: opacity 0.4s, background 0.3s, color 0.3s;
+        }
+        .demo-status-chip.visible { opacity: 1; }
+        .demo-toolbar {
+            display: flex; align-items: center; gap: 6px;
+            margin-bottom: 6px; padding: 0 2px;
+        }
+        .demo-cam-btn {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: #0071e3;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .demo-cam-btn svg { width: 14px; height: 14px; fill: #fff; }
+        .demo-gen-btn {
+            padding: 5px 12px; border-radius: 16px;
+            background: #0071e3; color: #fff;
+            font-size: 11px; font-weight: 600;
+            display: flex; align-items: center; gap: 3px;
+            margin-left: auto;
+            transition: transform 0.15s, background 0.2s;
+        }
+        .demo-gen-btn.pressed { transform: scale(0.92); background: #005bb5; }
+        .demo-thumb-area {
+            display: flex; gap: 5px;
+            margin-bottom: 6px; padding: 0 2px;
+            min-height: 42px;
+        }
+        .demo-thumb {
+            width: 42px; height: 42px; border-radius: 6px;
+            overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            opacity: 0; transform: scale(0.5);
+            transition: opacity 0.4s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .demo-thumb.visible { opacity: 1; transform: scale(1); }
+        .demo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .demo-prompt-box {
+            background: #fff; border: 1.5px solid rgba(0,113,227,0.25);
+            border-radius: 8px; padding: 8px 10px;
+            min-height: 65px; margin-bottom: 6px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+        .demo-prompt-box.focused { border-color: #0071e3; border-width: 2px; }
+        .demo-prompt-placeholder {
+            font-size: 11px; color: #c7c7cc; line-height: 1.4;
+            position: absolute; top: 8px; left: 10px;
+            pointer-events: none; transition: opacity 0.3s;
+        }
+        .demo-prompt-text {
+            font-size: 12px; line-height: 1.4; color: #1d1d1f;
+            font-family: 'Inter', sans-serif;
+        }
+        .demo-cursor {
+            display: inline-block; width: 1.5px; height: 14px;
+            background: #0071e3; vertical-align: middle;
+            animation: demoCursorBlink 1s step-end infinite;
+        }
+        @keyframes demoCursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .demo-viewport {
+            flex: 1; min-height: 200px;
+            background: #1a1a2e; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .demo-vp-placeholder {
+            text-align: center; color: rgba(255,255,255,0.15);
+            transition: opacity 0.4s;
+        }
+        .demo-vp-placeholder svg {
+            width: 24px; height: 24px; fill: none;
+            stroke: rgba(255,255,255,0.12); stroke-width: 1.5;
+        }
+        .demo-vp-placeholder p { font-size: 9px; margin-top: 4px; }
+        .demo-vp-model {
+            position: absolute; inset: 0;
+            opacity: 0; transform: scale(0.6) rotateY(-15deg);
+            transition: opacity 0.8s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .demo-vp-model.visible { opacity: 1; transform: scale(1) rotateY(0deg); }
+        .demo-vp-model img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+        .demo-loading {
+            position: absolute; inset: 0;
+            background: rgba(26,26,46,0.85);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px;
+            opacity: 0; transition: opacity 0.4s; border-radius: 10px;
+        }
+        .demo-loading.visible { opacity: 1; }
+        .demo-spinner {
+            width: 20px; height: 20px;
+            border: 2.5px solid rgba(255,255,255,0.12);
+            border-top-color: #4fc3f7;
+            border-radius: 50%;
+            animation: demoSpin 0.7s linear infinite;
+        }
+        @keyframes demoSpin { to { transform: rotate(360deg); } }
+        .demo-loading-text { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.7); }
+        .demo-actions {
+            display: flex; gap: 6px; margin-top: 6px;
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .demo-actions.visible { opacity: 1; transform: translateY(0); }
+        .demo-share-btn, .demo-save-btn {
+            flex: 1; padding: 8px 0; border-radius: 6px;
+            font-size: 10px; font-weight: 600; text-align: center;
+        }
+        .demo-share-btn { background: #0071e3; color: #fff; }
+        .demo-save-btn { background: rgba(0,113,227,0.1); color: #0071e3; }
+        .demo-script {
+            display: flex; align-items: center; gap: 4px;
+            margin-top: 5px; opacity: 0; transition: opacity 0.4s;
+        }
+        .demo-script.visible { opacity: 1; }
+        .demo-script span { font-size: 9px; font-weight: 500; color: #0071e3; }
+        .demo-script .demo-stats { color: #86868b; margin-left: auto; }
+        .demo-tabs {
+            display: flex; justify-content: space-around;
+            padding: 5px 0 1px; border-top: 1px solid #e0e0e0; margin-top: 4px;
+        }
+        .demo-tab {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 1px; font-size: 8px; color: #86868b;
+        }
+        .demo-tab.active { color: #0071e3; }
+        .demo-tab svg { width: 14px; height: 14px; }
+
+        /* ─ Right description ─ */
+        .demo-desc {
+            flex: 1;
+            color: #fff;
+        }
+        .demo-desc .demo-step-badge {
+            display: inline-block;
+            font-size: 12px; font-weight: 600;
+            color: #4fc3f7; text-transform: uppercase;
+            letter-spacing: 0.08em; margin-bottom: 14px;
+            padding: 4px 12px;
+            background: rgba(79,195,247,0.08);
+            border-radius: 6px;
+            transition: all 0.5s;
+        }
+        .demo-desc h3 {
+            font-size: 28px; font-weight: 700;
+            letter-spacing: -0.02em; margin-bottom: 14px;
+            line-height: 1.25;
+            transition: all 0.5s;
+        }
+        .demo-desc p {
+            font-size: 15px; line-height: 1.6;
+            color: rgba(255,255,255,0.55);
+            transition: all 0.5s;
+        }
+
+        /* Replay button */
+        .demo-replay {
+            display: none;
+            margin: 32px auto 0;
+            padding: 10px 24px;
+            background: rgba(79,195,247,0.12);
+            border: 1px solid rgba(79,195,247,0.2);
+            color: #4fc3f7;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            position: relative; z-index: 2;
+        }
+        .demo-replay:hover { background: rgba(79,195,247,0.2); }
+        .demo-replay.visible { display: block; }
+
+        /* ═══════════════════════════════════════════════════════ */
+        /* ─── ETHOS SECTION ─── */
+        /* ═══════════════════════════════════════════════════════ */
+        .ethos-section {
+            background: #0a0a1a;
+            padding: 60px 24px 80px;
+            text-align: center;
+        }
+        .ethos-section h2 {
+            font-size: 34px; font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #fff 0%, #4fc3f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+        .ethos-cards {
+            display: flex; gap: 24px;
+            justify-content: center;
+            max-width: 900px; margin: 0 auto;
+        }
+        .ethos-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 22px;
+            flex: 1;
+            text-align: left;
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .ethos-card.visible { opacity: 1; transform: translateY(0); }
+        .ethos-card .eicon { font-size: 28px; margin-bottom: 14px; }
+        .ethos-card h3 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .ethos-card p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.45); }
+
+        /* ─── FEATURES ─── */
         .features {
             max-width: 800px; margin: 0 auto; padding: 60px 24px;
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
@@ -101,6 +390,7 @@
         .feature h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
         .feature p { font-size: 15px; color: #6e6e73; line-height: 1.5; }
 
+        /* ─── USE CASES ─── */
         .use-cases {
             max-width: 800px; margin: 0 auto; padding: 40px 24px 60px;
             text-align: center;
@@ -108,6 +398,7 @@
         .use-cases h2 { font-size: 32px; font-weight: 700; margin-bottom: 24px; }
         .use-cases p { font-size: 17px; color: #6e6e73; line-height: 1.7; max-width: 600px; margin: 0 auto; }
 
+        /* ─── PRICING ─── */
         .pricing {
             text-align: center; padding: 60px 24px;
             background: #f5f5f7;
@@ -130,17 +421,26 @@
         footer a { color: #86868b; margin: 0 12px; }
         footer a:hover { color: #1d1d1f; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 { font-size: 32px; }
             .subtitle { font-size: 17px; }
             .features { grid-template-columns: 1fr; gap: 32px; }
             .steps { flex-direction: column; gap: 24px; }
             .pricing .price { font-size: 36px; }
+            .demo-container { flex-direction: column; gap: 32px; }
+            .demo-phone { width: 280px; min-width: 280px; }
+            .demo-desc h3 { font-size: 22px; text-align: center; }
+            .demo-desc p { text-align: center; font-size: 14px; }
+            .demo-desc .demo-step-badge { display: block; text-align: center; }
+            .demo-section h2 { font-size: 28px; }
+            .ethos-cards { flex-direction: column; gap: 16px; }
+            .ethos-section h2 { font-size: 26px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ═══ HERO ═══ -->
 <section class="hero">
     <div class="hero-icon">
         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,6 +456,7 @@
     <a href="https://apps.apple.com/app/designer/id6760601644" class="badge">Download on the App Store</a>
 </section>
 
+<!-- ═══ HOW IT WORKS ═══ -->
 <section class="how-it-works">
     <h2>How It Works</h2>
     <div class="steps">
@@ -177,6 +478,115 @@
     </div>
 </section>
 
+<!-- ═══ ANIMATED DEMO ═══ -->
+<section class="demo-section" id="demoSection">
+    <div class="demo-bg-grid"></div>
+    <p class="section-label">See It In Action</p>
+    <h2>From sketch to 3D model</h2>
+
+    <div class="demo-container">
+        <!-- Phone Mockup -->
+        <div class="demo-phone" id="demoPhone">
+            <div class="demo-phone-notch"></div>
+            <div class="demo-phone-header">
+                <div>
+                    <h3>Designer+</h3>
+                    <div class="demo-engine-badge"><span class="demo-engine-dot"></span> CAD engine ready</div>
+                </div>
+                <div class="demo-status-chip" id="demoStatus">Generating…</div>
+            </div>
+            <div class="demo-toolbar">
+                <div class="demo-cam-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4z"/><path d="M9 2L7.17 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2h-3.17L15 2H9z"/></svg>
+                </div>
+                <div class="demo-gen-btn" id="demoGenBtn">
+                    <span style="font-size:10px;">↑</span> Generate
+                </div>
+            </div>
+            <div class="demo-thumb-area">
+                <div class="demo-thumb" id="demoThumb">
+                    <img src="demo-sketch.png" alt="sketch">
+                </div>
+            </div>
+            <div class="demo-prompt-box" id="demoPromptBox">
+                <div class="demo-prompt-placeholder" id="demoPlaceholder">Describe your part here, include dimensions…</div>
+                <div class="demo-prompt-text" id="demoPromptText"></div>
+            </div>
+            <div class="demo-viewport">
+                <div class="demo-vp-placeholder" id="demoVpPlaceholder">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <p>Your model will appear here</p>
+                </div>
+                <div class="demo-vp-model" id="demoModel">
+                    <img src="demo-model.png" alt="3D CAD model">
+                </div>
+                <div class="demo-loading" id="demoLoading">
+                    <div class="demo-spinner"></div>
+                    <div class="demo-loading-text" id="demoLoadingText">Analyzing sketch…</div>
+                </div>
+            </div>
+            <div class="demo-actions" id="demoActions">
+                <div class="demo-share-btn">📤 Share</div>
+                <div class="demo-save-btn">🔖 Save</div>
+            </div>
+            <div class="demo-script" id="demoScript">
+                <span>▸ Generated Script</span>
+                <span class="demo-stats">486 verts · 512 tris</span>
+            </div>
+            <div class="demo-tabs">
+                <div class="demo-tab active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                    <span>Design</span>
+                </div>
+                <div class="demo-tab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+                    <span>Library</span>
+                </div>
+                <div class="demo-tab">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4"/></svg>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="demo-desc" id="demoDesc">
+            <div class="demo-step-badge" id="demoBadge">Step 1 · Snap a sketch</div>
+            <h3 id="demoTitle">Photograph your hand-drawn sketch</h3>
+            <p id="demoText">Draw your part idea on paper — even a rough napkin sketch works. Snap a photo right from the app's camera and it gets attached to your design request.</p>
+        </div>
+    </div>
+
+    <button class="demo-replay" id="demoReplay" onclick="replayDemo()">▶ Replay Demo</button>
+</section>
+
+<!-- ═══ ETHOS ═══ -->
+<section class="ethos-section" id="ethosSection">
+    <h2>Built for everyday makers,<br>not enterprise budgets.</h2>
+    <div class="ethos-cards">
+        <div class="ethos-card" id="ec1">
+            <div class="eicon">🔩</div>
+            <h3>Functional Parts</h3>
+            <p>Brackets, mounts, enclosures, adapters — the stuff you actually need to print. Not movie props, real functional parts.</p>
+        </div>
+        <div class="ethos-card" id="ec2">
+            <div class="eicon">⚡</div>
+            <h3>Skip the Learning Curve</h3>
+            <p>No Fusion 360 tutorials. No Onshape certification. Just describe what you need in plain English.</p>
+        </div>
+        <div class="ethos-card" id="ec3">
+            <div class="eicon">💰</div>
+            <h3>Cheap &amp; Cheerful</h3>
+            <p>Pro CAD software costs $500+/yr. Designer+ helps common everyday CAD get done without breaking the bank.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
 <section class="features">
     <div class="feature">
         <div class="feature-icon">💬</div>
@@ -210,11 +620,13 @@
     </div>
 </section>
 
+<!-- ═══ USE CASES ═══ -->
 <section class="use-cases">
     <h2>Built for Makers</h2>
     <p>Whether you're a mechanical engineer prototyping parts, a maker designing 3D prints, a student learning CAD, or anyone who needs a quick 3D model without complex desktop software — Designer+ gets you from idea to exportable file in seconds.</p>
 </section>
 
+<!-- ═══ PRICING ═══ -->
 <section class="pricing">
     <h2>Simple Pricing</h2>
     <div class="price">$4.99</div>
@@ -229,6 +641,193 @@
     <a href="terms.html">Terms of Use</a>
     <a href="mailto:mattpeshapps@gmail.com">Contact</a>
 </footer>
+
+<!-- ═══ DEMO ANIMATION SCRIPT ═══ -->
+<script>
+(function() {
+    let demoStarted = false;
+    let demoTimers = [];
+
+    const promptMessage = 'Make a 2 x 4 lego block with 8 studs on top. Standard dimensions: 32mm long, 16mm wide, 12mm tall.';
+
+    function typeText(el, text, speed, callback) {
+        let i = 0;
+        el.innerHTML = '';
+        function t() {
+            if (i < text.length) {
+                el.innerHTML = text.substring(0, i + 1) + '<span class="demo-cursor"></span>';
+                i++;
+                demoTimers.push(setTimeout(t, speed));
+            } else {
+                el.innerHTML = text + '<span class="demo-cursor"></span>';
+                if (callback) demoTimers.push(setTimeout(callback, 300));
+            }
+        }
+        t();
+    }
+
+    function updateDesc(badge, title, text) {
+        const b = document.getElementById('demoBadge');
+        const t = document.getElementById('demoTitle');
+        const p = document.getElementById('demoText');
+        b.style.opacity = '0'; t.style.opacity = '0'; p.style.opacity = '0';
+        demoTimers.push(setTimeout(() => {
+            b.textContent = badge; t.textContent = title; p.textContent = text;
+            b.style.opacity = '1'; t.style.opacity = '1'; p.style.opacity = '1';
+        }, 400));
+    }
+
+    function resetDemo() {
+        // Clear all timers
+        demoTimers.forEach(t => clearTimeout(t));
+        demoTimers = [];
+
+        // Reset all elements
+        document.getElementById('demoThumb').classList.remove('visible');
+        document.getElementById('demoPromptBox').classList.remove('focused');
+        document.getElementById('demoPlaceholder').style.opacity = '1';
+        document.getElementById('demoPromptText').innerHTML = '';
+        document.getElementById('demoStatus').classList.remove('visible');
+        document.getElementById('demoStatus').textContent = 'Generating…';
+        document.getElementById('demoStatus').style.background = '';
+        document.getElementById('demoStatus').style.color = '';
+        document.getElementById('demoGenBtn').classList.remove('pressed');
+        document.getElementById('demoVpPlaceholder').style.opacity = '1';
+        document.getElementById('demoModel').classList.remove('visible');
+        document.getElementById('demoLoading').classList.remove('visible');
+        document.getElementById('demoActions').classList.remove('visible');
+        document.getElementById('demoScript').classList.remove('visible');
+        document.getElementById('demoReplay').classList.remove('visible');
+
+        const b = document.getElementById('demoBadge');
+        const t = document.getElementById('demoTitle');
+        const p = document.getElementById('demoText');
+        b.style.opacity = '1'; t.style.opacity = '1'; p.style.opacity = '1';
+        b.textContent = 'Step 1 · Snap a sketch';
+        t.textContent = 'Photograph your hand-drawn sketch';
+        p.textContent = 'Draw your part idea on paper — even a rough napkin sketch works. Snap a photo right from the app\'s camera and it gets attached to your design request.';
+    }
+
+    function runDemo() {
+        resetDemo();
+
+        // 1. Show photo thumbnail (1.5s) 
+        demoTimers.push(setTimeout(() => {
+            document.getElementById('demoThumb').classList.add('visible');
+        }, 1500));
+
+        // 2. Update text to Step 2 (3s)
+        demoTimers.push(setTimeout(() => {
+            updateDesc(
+                'Step 2 · Describe your part',
+                'Type what you want to build',
+                'Write your description in plain English. Include dimensions if you want precision. The AI combines your sketch + text to understand exactly what to model.'
+            );
+        }, 3000));
+
+        // 3. Focus prompt, hide placeholder, start typing (3.5s)
+        demoTimers.push(setTimeout(() => {
+            document.getElementById('demoPromptBox').classList.add('focused');
+            document.getElementById('demoPlaceholder').style.opacity = '0';
+        }, 3500));
+
+        demoTimers.push(setTimeout(() => {
+            typeText(document.getElementById('demoPromptText'), promptMessage, 40, function() {
+                // After typing → press Generate
+                demoTimers.push(setTimeout(() => {
+                    // Button animation
+                    const btn = document.getElementById('demoGenBtn');
+                    btn.classList.add('pressed');
+                    demoTimers.push(setTimeout(() => btn.classList.remove('pressed'), 200));
+
+                    // Update text to Step 3
+                    updateDesc(
+                        'Step 3 · AI generates',
+                        'Building your 3D model',
+                        'The AI analyzes your sketch and description, writes parametric CAD code, then builds real solid geometry using a professional modeling engine.'
+                    );
+
+                    // Show status chip + loading
+                    demoTimers.push(setTimeout(() => {
+                        document.getElementById('demoStatus').classList.add('visible');
+                        document.getElementById('demoVpPlaceholder').style.opacity = '0';
+                        document.getElementById('demoLoading').classList.add('visible');
+                        document.getElementById('demoLoadingText').textContent = 'Analyzing sketch…';
+                    }, 300));
+
+                    demoTimers.push(setTimeout(() => {
+                        document.getElementById('demoLoadingText').textContent = 'Generating CAD script…';
+                    }, 2300));
+
+                    demoTimers.push(setTimeout(() => {
+                        document.getElementById('demoLoadingText').textContent = 'Building 3D model…';
+                    }, 4300));
+
+                    // Show completed model
+                    demoTimers.push(setTimeout(() => {
+                        document.getElementById('demoLoading').classList.remove('visible');
+                        document.getElementById('demoModel').classList.add('visible');
+                        const chip = document.getElementById('demoStatus');
+                        chip.textContent = 'Complete';
+                        chip.style.background = 'rgba(52,199,89,0.1)';
+                        chip.style.color = '#34c759';
+
+                        updateDesc(
+                            'Ready to export',
+                            'Your model is ready to print',
+                            'Export as STL for 3D printing or OBJ for import into any CAD tool. Save to your parts library or share directly from your phone.'
+                        );
+
+                        demoTimers.push(setTimeout(() => {
+                            document.getElementById('demoActions').classList.add('visible');
+                        }, 500));
+                        demoTimers.push(setTimeout(() => {
+                            document.getElementById('demoScript').classList.add('visible');
+                        }, 800));
+                        demoTimers.push(setTimeout(() => {
+                            document.getElementById('demoReplay').classList.add('visible');
+                        }, 1500));
+                    }, 6000));
+
+                }, 600));
+            });
+        }, 4000));
+    }
+
+    window.replayDemo = function() {
+        runDemo();
+    };
+
+    // IntersectionObserver to auto-play when scrolled in
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !demoStarted) {
+                demoStarted = true;
+                demoTimers.push(setTimeout(runDemo, 500));
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(document.getElementById('demoSection'));
+
+    // Ethos cards scroll animation
+    const ethosObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const cards = ['ec1', 'ec2', 'ec3'];
+                cards.forEach((id, i) => {
+                    setTimeout(() => {
+                        document.getElementById(id).classList.add('visible');
+                    }, i * 200);
+                });
+                ethosObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.2 });
+
+    ethosObserver.observe(document.getElementById('ethosSection'));
+})();
+</script>
 
 </body>
 </html>
