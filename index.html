@@ -161,10 +161,28 @@ section{position:relative;padding:100px 24px;z-index:1}
 .demo-feedback-wrap.visible{display:block}
 .demo-feedback-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#86868b;margin-bottom:4px}
 .demo-thumb-area.is-hidden{min-height:0!important;height:0!important;margin:0!important;padding:0!important;opacity:0;overflow:hidden}
-.demo-bh{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:10px}
-.demo-bh.visible{display:flex}
-.demo-bh svg{max-width:100%;max-height:175px;width:auto;height:auto}
-#demoHole{transition:r .5s ease}
+/* ── CSS 3D birdhouse ── */
+.bh-scene{perspective:500px;perspective-origin:50% 45%;position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+.bh-scene.vis{display:flex}
+.bh-cube{width:66px;height:66px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(-35deg)}
+.bh-cube.spin{animation:bh-y 14s linear infinite}
+@keyframes bh-y{from{transform:rotateX(-20deg) rotateY(-35deg)}to{transform:rotateX(-20deg) rotateY(325deg)}}
+.bh-f{position:absolute;width:66px;height:66px;opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1);backface-visibility:visible}
+.bh-f.on{opacity:1}
+.bh-front{background:linear-gradient(135deg,rgba(89,209,234,.22),rgba(89,209,234,.10));border:1.2px solid rgba(89,209,234,.75);transform:translateZ(33px)}
+.bh-back{background:rgba(89,209,234,.05);border:1.2px solid rgba(89,209,234,.22);transform:rotateY(180deg) translateZ(33px)}
+.bh-left{background:linear-gradient(180deg,rgba(89,209,234,.08),rgba(89,209,234,.02));border:1.2px solid rgba(89,209,234,.18);transform:rotateY(-90deg) translateZ(33px)}
+.bh-right{background:linear-gradient(180deg,rgba(89,209,234,.16),rgba(89,209,234,.06));border:1.2px solid rgba(89,209,234,.48);transform:rotateY(90deg) translateZ(33px)}
+.bh-top{background:rgba(89,209,234,.10);border:1.2px solid rgba(89,209,234,.32);transform:rotateX(90deg) translateZ(33px)}
+.bh-bottom{background:rgba(89,209,234,.02);border:1.2px solid rgba(89,209,234,.10);transform:rotateX(-90deg) translateZ(33px)}
+.bh-roof{width:82px;height:82px;left:-8px;top:-8px;background:linear-gradient(135deg,rgba(89,209,234,.30),rgba(79,195,247,.12));border:1.5px solid rgba(89,209,234,.70);transform:rotateX(90deg) translateZ(37px);box-shadow:0 -2px 12px rgba(79,195,247,.10)}
+.bh-hole{position:absolute;width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.55);border:1.2px solid rgba(89,209,234,.45);top:50%;left:50%;transform:translate(-50%,-42%);transition:width .7s cubic-bezier(.34,1.56,.64,1),height .7s cubic-bezier(.34,1.56,.64,1),box-shadow .5s,border-color .5s}
+.bh-hole.wide{width:26px;height:26px;box-shadow:0 0 12px rgba(52,199,89,.55),0 0 4px rgba(52,199,89,.3) inset;border-color:#34c759}
+.bh-perch{position:absolute;width:2px;height:8px;background:rgba(89,209,234,.55);border-radius:1px;bottom:13px;left:50%;transform:translateX(-50%)}
+.bh-code{position:absolute;bottom:6px;left:6px;right:6px;max-height:52px;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);border-radius:5px;padding:5px 7px;font-family:'SF Mono','Menlo','Consolas',monospace;font-size:7px;line-height:1.45;color:rgba(79,195,247,.8);overflow:hidden;opacity:0;transition:opacity .4s;white-space:pre;pointer-events:none;border:1px solid rgba(79,195,247,.12)}
+.bh-code.on{opacity:1}
+.demo-progress{width:72%;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-top:6px}
+.demo-progress-fill{height:100%;background:linear-gradient(90deg,#4fc3f7,#0071e3);border-radius:2px;width:0%;transition:width .9s cubic-bezier(.4,0,.2,1)}
 
 /* ── Feature cards ── */
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
@@ -299,15 +317,9 @@ footer a:hover{color:var(--accent);text-decoration:none}
             <div class="demo-feedback-wrap" id="demoFeedbackWrap"><div class="demo-feedback-label">Your feedback</div><div class="demo-prompt-box" style="min-height:44px;padding:6px 8px"><div class="demo-prompt-text" id="demoFeedbackText" style="font-size:11px"></div></div></div>
             <div class="demo-viewport">
                 <div class="demo-vp-placeholder" id="demoVpPlaceholder"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><p>Your model will appear here</p></div>
-                <div class="demo-bh" id="demoBirdhouse" aria-hidden="true">
-                    <svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="55" y="75" width="90" height="75" rx="2" stroke="#4fc3f7" stroke-width="1.8" fill="rgba(79,195,247,0.08)"/>
-                        <path d="M42 75 L158 75 L165 68 L35 68 Z" stroke="#4fc3f7" stroke-width="1.5" fill="rgba(79,195,247,0.12)"/>
-                        <circle id="demoHole" cx="100" cy="112" r="12" stroke="#4fc3f7" stroke-width="1.5" fill="rgba(0,0,0,0.2)"/>
-                    </svg>
-                </div>
-                <div class="demo-vp-model" id="demoModel" style="display:none"><img src="demo-model.png" alt=""></div>
-                <div class="demo-loading" id="demoLoading"><div class="demo-spinner"></div><div class="demo-loading-text" id="demoLoadingText">Planning layout…</div></div>
+                <div class="bh-scene" id="bhScene"><div class="bh-cube" id="bhCube"><div class="bh-f bh-front" id="bhFront"><div class="bh-hole" id="bhHole"></div><div class="bh-perch"></div></div><div class="bh-f bh-back"></div><div class="bh-f bh-left"></div><div class="bh-f bh-right"></div><div class="bh-f bh-top"></div><div class="bh-f bh-bottom"></div><div class="bh-f bh-roof"></div></div></div>
+                <div class="bh-code" id="bhCode"></div>
+                <div class="demo-loading" id="demoLoading"><div class="demo-spinner"></div><div class="demo-loading-text" id="demoLoadingText">Planning layout…</div><div class="demo-progress"><div class="demo-progress-fill" id="demoProgressFill"></div></div></div>
                 <div class="demo-approval-bar" id="demoApproval">
                     <span class="demo-apbtn demo-apbtn-good" id="apGood">Looks good</span>
                     <span class="demo-apbtn demo-apbtn-improve">Improve further</span>
@@ -403,188 +415,164 @@ resize();draw();addEventListener('resize',resize)})();
 const ro=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');ro.unobserve(el.target)}})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-// Demo animation — birdhouse + typed feedback (matches product flow)
+// Demo — CSS 3D birdhouse, code streaming, assembly animation, progress bar
 (function(){
-  const PROMPT = 'Birdhouse: 100mm cube, round entrance on front, overhanging flat roof.';
-  const FEEDBACK = 'Widen the entrance to 45mm';
-  let timers = [];
-  let started = false;
+  var PROMPT = 'Birdhouse: 100mm cube, round entrance on front, overhanging flat roof.';
+  var FEEDBACK = 'Widen the entrance to 45mm';
+  var JSCAD = "const { cuboid, cylinder } = jscad.primitives;\nconst { subtract, union } = jscad.booleans;\n\nfunction main() {\n  const body = cuboid({\n    size: [100, 100, 100]\n  });\n  const roof = cuboid({\n    size: [120, 8, 120],\n    center: [0, 54, 0]\n  });\n  const hole = cylinder({\n    radius: 15, height: 102,\n    center: [0, 10, 51],\n    segments: 32\n  });\n  return subtract(\n    union(body, roof), hole\n  );\n}";
+  var timers = [], started = false;
 
-  function wait(ms) {
-    return new Promise(function (resolve) {
-      const t = setTimeout(resolve, ms);
-      timers.push(t);
+  function wait(ms){ return new Promise(function(r){ timers.push(setTimeout(r,ms)); }); }
+  function clearAll(){ timers.forEach(clearTimeout); timers=[]; }
+  function $(id){ return document.getElementById(id); }
+
+  function typeText(el, text, spd){
+    return new Promise(function(resolve){
+      var i=0;
+      (function tick(){
+        if(i<text.length){ i++; el.innerHTML=text.slice(0,i)+'<span class="demo-cursor"></span>'; timers.push(setTimeout(tick,spd)); }
+        else{ el.innerHTML=text; resolve(); }
+      })();
     });
   }
 
-  function clearAllTimers() {
-    timers.forEach(function (id) { clearTimeout(id); });
-    timers = [];
-  }
-
-  function $(id) { return document.getElementById(id); }
-
-  function typePromise(el, text, spd) {
-    return new Promise(function (resolve) {
-      var i = 0;
-      function tick() {
-        if (i < text.length) {
-          i++;
-          el.innerHTML = text.slice(0, i) + '<span class="demo-cursor"></span>';
-          timers.push(setTimeout(tick, spd));
-        } else {
-          el.innerHTML = text;
-          resolve();
-        }
-      }
-      el.innerHTML = '';
-      tick();
+  function streamCode(el, text, spd){
+    return new Promise(function(resolve){
+      var i=0;
+      (function tick(){
+        if(i<text.length){ i+=3; el.textContent=text.slice(0,Math.min(i,text.length)); el.scrollTop=el.scrollHeight; timers.push(setTimeout(tick,spd)); }
+        else{ resolve(); }
+      })();
     });
   }
 
-  function desc(b, t, p) {
-    var B = $('demoBadge'), T = $('demoTitle'), P = $('demoText');
-    B.style.opacity = '0';
-    T.style.opacity = '0';
-    P.style.opacity = '0';
-    return wait(350).then(function () {
-      B.textContent = b;
-      T.textContent = t;
-      P.textContent = p;
-      B.style.opacity = '1';
-      T.style.opacity = '1';
-      P.style.opacity = '1';
+  function desc(b,t,p){
+    var B=$('demoBadge'),T=$('demoTitle'),P=$('demoText');
+    B.style.opacity='0';T.style.opacity='0';P.style.opacity='0';
+    return wait(300).then(function(){ B.textContent=b;T.textContent=t;P.textContent=p;B.style.opacity='1';T.style.opacity='1';P.style.opacity='1'; });
+  }
+
+  function prog(pct){ var f=$('demoProgressFill'); if(f) f.style.width=pct+'%'; }
+
+  var FACES=['.bh-front','.bh-right','.bh-back','.bh-left','.bh-bottom','.bh-top','.bh-roof'];
+
+  function assemble(){
+    return new Promise(function(resolve){
+      var delay=0;
+      FACES.forEach(function(sel){
+        var face=document.querySelector('#bhCube '+sel);
+        if(face){ timers.push(setTimeout(function(){ face.classList.add('on'); },delay)); delay+=140; }
+      });
+      timers.push(setTimeout(function(){ $('bhCube').classList.add('spin'); resolve(); },delay+200));
     });
   }
 
-  function reset() {
-    clearAllTimers();
-    ['demoActions', 'demoScript'].forEach(function (id) {
-      var e = $(id);
-      if (e) e.classList.remove('visible');
-    });
+  function hideModel(){
+    FACES.forEach(function(sel){ var f=document.querySelector('#bhCube '+sel); if(f) f.classList.remove('on'); });
+    $('bhCube').classList.remove('spin');
+    $('bhHole').classList.remove('wide');
+  }
+
+  function reset(){
+    clearAll();
+    ['demoActions','demoScript'].forEach(function(id){ var e=$(id); if(e) e.classList.remove('visible'); });
     $('demoPromptBox').classList.remove('focused');
-    $('demoPlaceholder').style.opacity = '1';
-    $('demoPromptText').innerHTML = '';
-    $('demoFeedbackText').innerHTML = '';
+    $('demoPlaceholder').style.opacity='1';
+    $('demoPromptText').innerHTML='';
+    $('demoFeedbackText').innerHTML='';
     $('demoFeedbackWrap').classList.remove('visible');
-    var s = $('demoStatus');
-    s.classList.remove('visible');
-    s.textContent = 'Working…';
-    s.style.background = '';
-    s.style.color = '';
+    var s=$('demoStatus'); s.classList.remove('visible'); s.textContent='Working…'; s.style.background=''; s.style.color='';
     $('demoGenBtn').classList.remove('pressed');
-    $('demoVpPlaceholder').style.opacity = '1';
+    $('demoVpPlaceholder').style.opacity='1';
     $('demoLoading').classList.remove('visible');
-    $('demoBirdhouse').classList.remove('visible');
-    $('demoHole').setAttribute('r', '12');
-    $('demoHole').setAttribute('stroke', '#4fc3f7');
+    $('bhScene').classList.remove('vis');
+    hideModel();
+    $('bhCode').classList.remove('on'); $('bhCode').textContent='';
+    prog(0);
     $('demoApproval').classList.remove('visible');
-    $('apGood').classList.remove('pressed');
-    $('apFeedback').classList.remove('pressed');
+    $('apGood').classList.remove('pressed'); $('apFeedback').classList.remove('pressed');
     $('demoReplay').classList.remove('visible');
-    $('demoThumbArea').classList.add('is-hidden');
-    $('demoThumb').classList.remove('visible');
-    var B = $('demoBadge'), T = $('demoTitle'), P = $('demoText');
-    B.textContent = 'Step 1 · Describe';
-    T.textContent = 'Type what you want to build';
-    P.textContent = 'Use plain language and millimeters. The demo uses a simple birdhouse — box, hole, and roof.';
-    B.style.opacity = '1';
-    T.style.opacity = '1';
-    P.style.opacity = '1';
+    $('demoThumbArea').classList.add('is-hidden'); $('demoThumb').classList.remove('visible');
+    var B=$('demoBadge'),T=$('demoTitle'),P=$('demoText');
+    B.textContent='Step 1 \u00b7 Describe'; T.textContent='Type what you want to build';
+    P.textContent='Describe a birdhouse \u2014 box, hole, and overhanging roof \u2014 in mm.';
+    B.style.opacity='1'; T.style.opacity='1'; P.style.opacity='1';
   }
 
-  async function run() {
+  async function run(){
     reset();
     await wait(450);
-    await desc('Step 1 · Describe your part', 'Type a simple enclosure', 'e.g. a birdhouse: box, entrance hole, overhanging roof — all in mm.');
+    await desc('Step 1 \u00b7 Describe your part','Type what you want to build','A birdhouse: 100 mm cube, round entrance, overhanging flat roof.');
     await wait(500);
-    $('demoPromptBox').classList.add('focused');
-    $('demoPlaceholder').style.opacity = '0';
+    $('demoPromptBox').classList.add('focused'); $('demoPlaceholder').style.opacity='0';
     await wait(200);
-    await typePromise($('demoPromptText'), PROMPT, 30);
+    await typeText($('demoPromptText'), PROMPT, 28);
     await wait(350);
-    $('demoGenBtn').classList.add('pressed');
-    await wait(160);
-    $('demoGenBtn').classList.remove('pressed');
+    $('demoGenBtn').classList.add('pressed'); await wait(160); $('demoGenBtn').classList.remove('pressed');
 
-    await desc('Step 2 · Plan, analyze & build', 'AI runs the full pipeline', 'Planning layout, analyzing the shape, generating JSCAD, then building geometry in the viewer — with auto-repair if needed.');
+    await desc('Step 2 \u00b7 Plan, analyze & build','AI runs the full pipeline','Planning layout, analyzing shape, writing JSCAD, building geometry \u2014 auto-repair if needed.');
     $('demoStatus').classList.add('visible');
-    $('demoVpPlaceholder').style.opacity = '0';
+    $('demoVpPlaceholder').style.opacity='0';
     $('demoLoading').classList.add('visible');
 
-    var loadStages = [
-      ['Planning layout…', 1000],
-      ['Investigating object…', 1200],
-      ['Generating script…', 1300],
-      ['Building geometry…', 1100]
-    ];
-    for (var j = 0; j < loadStages.length; j++) {
-      $('demoLoadingText').textContent = loadStages[j][0];
-      await wait(loadStages[j][1]);
-    }
+    $('demoLoadingText').textContent='Planning layout\u2026'; prog(10);
+    await wait(900);
+    $('demoLoadingText').textContent='Analyzing object\u2026'; prog(28);
+    await wait(1000);
 
+    $('demoLoadingText').textContent='Generating script\u2026'; prog(50);
+    $('bhCode').classList.add('on');
+    await streamCode($('bhCode'), JSCAD, 14);
+    prog(72);
+    await wait(250);
+    $('bhCode').classList.remove('on');
+
+    $('demoLoadingText').textContent='Building geometry\u2026'; prog(88);
     $('demoLoading').classList.remove('visible');
-    $('demoBirdhouse').classList.add('visible');
-    $('demoStatus').textContent = 'Does this look right?';
-    $('demoStatus').style.background = 'rgba(0,113,227,.1)';
-    $('demoStatus').style.color = '#0071e3';
-    $('demoApproval').classList.add('visible');
-    await desc('Step 3 · Refine', 'Give specific feedback', 'Typed revisions send your viewport renders and mesh stats to the AI — so changes stay on target.');
+    $('bhScene').classList.add('vis');
+    await assemble();
+    prog(100);
+    await wait(350);
 
-    await wait(2000);
-    $('apFeedback').classList.add('pressed');
-    await wait(550);
-    $('apFeedback').classList.remove('pressed');
+    $('demoStatus').textContent='Does this look right?';
+    $('demoStatus').style.background='rgba(0,113,227,.1)'; $('demoStatus').style.color='#0071e3';
+    $('demoScript').classList.add('visible');
+    $('demoApproval').classList.add('visible');
+    await desc('Step 3 \u00b7 Refine','Approve, improve, or give feedback','Typed revisions send viewport renders + mesh stats to AI \u2014 changes stay precise.');
+
+    await wait(2200);
+    $('apFeedback').classList.add('pressed'); await wait(500); $('apFeedback').classList.remove('pressed');
     $('demoApproval').classList.remove('visible');
     $('demoFeedbackWrap').classList.add('visible');
-    await typePromise($('demoFeedbackText'), FEEDBACK, 32);
-    await wait(450);
+    await typeText($('demoFeedbackText'), FEEDBACK, 30);
+    await wait(400);
 
-    $('demoStatus').textContent = 'Revising…';
+    $('demoStatus').textContent='Revising\u2026'; $('demoStatus').style.background='rgba(0,113,227,.1)'; $('demoStatus').style.color='#0071e3';
     $('demoLoading').classList.add('visible');
-    $('demoBirdhouse').classList.remove('visible');
-    $('demoVpPlaceholder').style.opacity = '0';
-    $('demoLoadingText').textContent = 'Revising with your 3D view…';
-    await wait(1500);
-    $('demoLoadingText').textContent = 'Rebuilding geometry…';
+    $('demoLoadingText').textContent='Revising with your 3D view\u2026'; prog(35);
     await wait(1100);
-    $('demoLoading').classList.remove('visible');
-    $('demoBirdhouse').classList.add('visible');
-    $('demoHole').setAttribute('r', '20');
-    $('demoHole').setAttribute('stroke', '#34c759');
+    $('demoLoadingText').textContent='Rebuilding geometry\u2026'; prog(80);
+    await wait(800);
+    prog(100); $('demoLoading').classList.remove('visible');
 
-    $('demoStatus').textContent = 'Updated';
-    $('demoStatus').style.background = 'rgba(52,199,89,.12)';
-    $('demoStatus').style.color = '#34c759';
+    $('bhHole').classList.add('wide');
+    await wait(350);
+
+    $('demoStatus').textContent='Updated \u2713'; $('demoStatus').style.background='rgba(52,199,89,.12)'; $('demoStatus').style.color='#34c759';
     $('demoApproval').classList.add('visible');
-    await wait(700);
-    $('apGood').classList.add('pressed');
-    await wait(450);
+    await wait(800);
+    $('apGood').classList.add('pressed'); await wait(500);
 
-    await desc('Step 4 · Export', 'STL or OBJ', 'Send to your slicer or open in any CAD tool. On iOS, save to your parts library.');
+    await desc('Step 4 \u00b7 Export','STL or OBJ \u2014 ready to print','Send to your slicer or open in any CAD tool. Save to your parts library on iOS.');
     $('demoApproval').classList.remove('visible');
     $('demoActions').classList.add('visible');
-    $('demoScript').classList.add('visible');
     $('demoReplay').classList.add('visible');
   }
 
-  window.replayDemo = function () {
-    clearAllTimers();
-    run();
-  };
-
-  new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !started) {
-          started = true;
-          setTimeout(function () { run(); }, 400);
-        }
-      });
-    },
-    { threshold: 0.22 }
-  ).observe($('demo'));
+  window.replayDemo=function(){ clearAll(); run(); };
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if(entry.isIntersecting&&!started){ started=true; setTimeout(run,400); } });
+  },{threshold:.22}).observe($('demo'));
 })();
 </script>
 </body>
