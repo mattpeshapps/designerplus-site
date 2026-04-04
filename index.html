@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Designer+ - Photos & Text to CAD | AI 3D Model Generator</title>
-    <meta name="description" content="Turn text descriptions and photos into real 3D CAD models. AI-powered text-to-CAD generator with STL and OBJ export for 3D printing. iPhone & iPad.">
+    <title>Designer+ — AI CAD on iPhone, iPad &amp; Web | Text &amp; Photo to 3D</title>
+    <meta name="description" content="Designer+ plans, analyzes, and builds real 3D CAD from text or photos. Refine with AI or typed feedback using your live 3D view. Export STL/OBJ. iOS app + web.">
     <meta name="keywords" content="text to CAD, AI CAD, 3D model generator, STL export, OBJ export, 3D printing app, sketch to CAD, Designer+">
     <meta name="author" content="Matthew Peschisolido">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://mattpeshapps.github.io/designerplus-site/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Designer+ - Photos & Text to CAD">
-    <meta property="og:description" content="Describe a part or photograph a sketch. AI generates a real 3D CAD model in seconds.">
+    <meta property="og:description" content="Plan → analyze → build. Approve, auto-improve, or type feedback—the model sees your viewport. iOS &amp; web.">
     <meta property="og:url" content="https://mattpeshapps.github.io/designerplus-site/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Designer+ - Photos & Text to CAD">
@@ -85,8 +85,8 @@ section{position:relative;padding:100px 24px;z-index:1}
 .section-sub{font-size:16px;color:var(--text2);text-align:center;max-width:520px;margin:0 auto 56px;line-height:1.6}
 
 /* ── Steps ── */
-.steps-grid{display:flex;gap:24px;max-width:960px;margin:0 auto;justify-content:center}
-.step-card{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px 24px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.steps-grid{display:flex;flex-wrap:wrap;gap:20px;max-width:1000px;margin:0 auto;justify-content:center}
+.step-card{flex:1 1 200px;max-width:240px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
 .step-card:hover{border-color:var(--border-hover);transform:translateY(-4px);background:var(--surface-hover)}
 .step-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:2px}
 .step-num{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(79,195,247,.15),rgba(0,113,227,.15));color:var(--accent);font-size:20px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid rgba(79,195,247,.12)}
@@ -150,6 +150,21 @@ section{position:relative;padding:100px 24px;z-index:1}
 .demo-replay{display:none;margin:32px auto 0;padding:10px 24px;background:var(--accent-glow);border:1px solid rgba(79,195,247,.2);color:var(--accent);border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit;position:relative;z-index:2}
 .demo-replay:hover{background:rgba(79,195,247,.2)}
 .demo-replay.visible{display:block}
+.demo-approval-bar{display:flex;gap:5px;justify-content:center;margin-top:8px;padding:0 4px;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s;flex-wrap:wrap}
+.demo-approval-bar.visible{opacity:1;transform:translateY(0)}
+.demo-apbtn{padding:6px 10px;border-radius:6px;font-size:9px;font-weight:600;white-space:nowrap;transition:transform .12s,box-shadow .12s}
+.demo-apbtn-good{background:#30d158;color:#fff}
+.demo-apbtn-improve{background:rgba(0,113,227,.1);color:#0071e3;border:1px solid rgba(0,113,227,.22)}
+.demo-apbtn-feedback{background:rgba(142,142,147,.1);color:#636366;border:1px solid rgba(142,142,147,.18)}
+.demo-apbtn.pressed{transform:scale(.93);box-shadow:0 0 0 2px rgba(0,113,227,.2)}
+.demo-feedback-wrap{display:none;padding:0 8px 6px}
+.demo-feedback-wrap.visible{display:block}
+.demo-feedback-label{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#86868b;margin-bottom:4px}
+.demo-thumb-area.is-hidden{min-height:0!important;height:0!important;margin:0!important;padding:0!important;opacity:0;overflow:hidden}
+.demo-bh{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:10px}
+.demo-bh.visible{display:flex}
+.demo-bh svg{max-width:100%;max-height:175px;width:auto;height:auto}
+#demoHole{transition:r .5s ease}
 
 /* ── Feature cards ── */
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
@@ -224,6 +239,7 @@ footer a:hover{color:var(--accent);text-decoration:none}
     <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#demo">Demo</a>
+        <a href="https://designerplus-web.pages.dev/login" target="_blank" rel="noopener">Web app</a>
         <a href="#pricing">Pricing</a>
     </div>
     <a href="https://apps.apple.com/app/designer/id6760601644" class="nav-cta">Download</a>
@@ -236,15 +252,16 @@ footer a:hover{color:var(--accent);text-decoration:none}
     <div class="hero-icon reveal">
         <svg viewBox="0 0 64 64" fill="none"><path d="M32 8L56 20V44L32 56L8 44V20L32 8Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 8V56" stroke="white" stroke-width="2.5"/><path d="M8 20L56 44" stroke="white" stroke-width="2" opacity=".5"/><path d="M56 20L8 44" stroke="white" stroke-width="2" opacity=".5"/><text x="50" y="14" fill="white" font-size="16" font-weight="700">+</text></svg>
     </div>
-    <div class="hero-badge reveal reveal-delay-1"><span class="dot"></span> AI-Powered CAD Engine</div>
+    <div class="hero-badge reveal reveal-delay-1"><span class="dot"></span> AI CAD — iOS &amp; Web</div>
     <h1 class="reveal reveal-delay-2">Photos &amp; Text<br>to 3D CAD Models</h1>
-    <p class="subtitle reveal reveal-delay-3">Describe a part in plain English or snap a photo of a sketch. AI generates real solid 3D geometry you can export as STL for 3D printing.</p>
+    <p class="subtitle reveal reveal-delay-3">AI plans and analyzes your part, builds real solid geometry, then lets you auto-improve or type feedback—with your 3D view sent to the model so edits stay on target. Export STL or OBJ for any slicer.</p>
     <div class="hero-actions reveal reveal-delay-4">
         <a href="https://apps.apple.com/app/designer/id6760601644" class="btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83"/><path d="M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-            Download Free
+            Download for iOS
         </a>
-        <a href="#demo" class="btn-secondary">See Demo ↓</a>
+        <a href="https://designerplus-web.pages.dev/login" class="btn-secondary" target="_blank" rel="noopener">Try on the Web</a>
+        <a href="#demo" class="btn-secondary">See demo ↓</a>
     </div>
     <div class="hero-meta reveal reveal-delay-5">
         <div class="hero-stat"><div class="val">3</div><div class="lbl">Free Designs</div></div>
@@ -256,12 +273,13 @@ footer a:hover{color:var(--accent);text-decoration:none}
 <!-- HOW IT WORKS -->
 <section>
     <p class="section-label reveal">How It Works</p>
-    <h2 class="section-title reveal">Three steps to a 3D model</h2>
-    <p class="section-sub reveal">No CAD experience needed. No desktop software. Just your phone.</p>
+    <h2 class="section-title reveal">From idea to export</h2>
+    <p class="section-sub reveal">Same smart pipeline on iPhone, iPad, and the web. No CAD degree required.</p>
     <div class="steps-grid">
-        <div class="step-card reveal reveal-delay-1"><div class="step-num">1</div><h3>Describe or Photograph</h3><p>Type a part description with dimensions or snap a photo of a hand-drawn sketch.</p></div>
-        <div class="step-card reveal reveal-delay-2"><div class="step-num">2</div><h3>AI Generates the Model</h3><p>AI writes parametric CAD code and builds precise 3D geometry using a pro-grade engine.</p></div>
-        <div class="step-card reveal reveal-delay-3"><div class="step-num">3</div><h3>Export &amp; Print</h3><p>Download your model as STL for 3D printing or OBJ for any CAD software. Share directly.</p></div>
+        <div class="step-card reveal reveal-delay-1"><div class="step-num">1</div><h3>Describe or photograph</h3><p>Type dimensions and details, or attach reference photos and sketches.</p></div>
+        <div class="step-card reveal reveal-delay-2"><div class="step-num">2</div><h3>Plan, analyze &amp; build</h3><p>AI lays out the design, analyzes the shape, generates JSCAD, and tessellates—auto-repair if something breaks.</p></div>
+        <div class="step-card reveal reveal-delay-3"><div class="step-num">3</div><h3>Refine</h3><p>Approve, run AI auto-improve from multi-angle renders, or type feedback. Revisions use your mesh stats and viewport screenshots.</p></div>
+        <div class="step-card reveal reveal-delay-4"><div class="step-num">4</div><h3>Export &amp; print</h3><p>STL or OBJ for any slicer or CAD tool. Save to your library or share.</p></div>
     </div>
 </section>
 
@@ -270,27 +288,40 @@ footer a:hover{color:var(--accent);text-decoration:none}
     <div class="grid-bg"></div>
     <p class="section-label reveal">See It In Action</p>
     <h2 class="section-title reveal">From sketch to 3D model</h2>
-    <p class="section-sub reveal">Watch the full workflow in real time.</p>
+    <p class="section-sub reveal">Auto-playing preview — same flow as the app: plan → build → typed feedback → updated model. Screen-record this page for a quick promo clip.</p>
     <div class="demo-container">
         <div class="demo-phone reveal" id="demoPhone">
             <div class="demo-phone-notch"></div>
             <div class="demo-phone-header"><div><h3>Designer+</h3><div class="demo-engine-badge"><span class="demo-engine-dot"></span> CAD engine ready</div></div><div class="demo-status-chip" id="demoStatus">Generating...</div></div>
             <div class="demo-toolbar"><div class="demo-cam-btn"><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4z"/><path d="M9 2L7.17 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2h-3.17L15 2H9z"/></svg></div><div class="demo-gen-btn" id="demoGenBtn"><span style="font-size:10px">↑</span> Generate</div></div>
-            <div class="demo-thumb-area"><div class="demo-thumb" id="demoThumb"><img src="demo-sketch.png" alt="sketch"></div></div>
+            <div class="demo-thumb-area is-hidden" id="demoThumbArea"><div class="demo-thumb" id="demoThumb"><img src="demo-sketch.png" alt=""></div></div>
             <div class="demo-prompt-box" id="demoPromptBox"><div class="demo-prompt-placeholder" id="demoPlaceholder">Describe your part here, include dimensions...</div><div class="demo-prompt-text" id="demoPromptText"></div></div>
+            <div class="demo-feedback-wrap" id="demoFeedbackWrap"><div class="demo-feedback-label">Your feedback</div><div class="demo-prompt-box" style="min-height:44px;padding:6px 8px"><div class="demo-prompt-text" id="demoFeedbackText" style="font-size:11px"></div></div></div>
             <div class="demo-viewport">
                 <div class="demo-vp-placeholder" id="demoVpPlaceholder"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><p>Your model will appear here</p></div>
-                <div class="demo-vp-model" id="demoModel"><img src="demo-model.png" alt="3D CAD model"></div>
-                <div class="demo-loading" id="demoLoading"><div class="demo-spinner"></div><div class="demo-loading-text" id="demoLoadingText">Analyzing sketch...</div></div>
+                <div class="demo-bh" id="demoBirdhouse" aria-hidden="true">
+                    <svg viewBox="0 0 200 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="55" y="75" width="90" height="75" rx="2" stroke="#4fc3f7" stroke-width="1.8" fill="rgba(79,195,247,0.08)"/>
+                        <path d="M42 75 L158 75 L165 68 L35 68 Z" stroke="#4fc3f7" stroke-width="1.5" fill="rgba(79,195,247,0.12)"/>
+                        <circle id="demoHole" cx="100" cy="112" r="12" stroke="#4fc3f7" stroke-width="1.5" fill="rgba(0,0,0,0.2)"/>
+                    </svg>
+                </div>
+                <div class="demo-vp-model" id="demoModel" style="display:none"><img src="demo-model.png" alt=""></div>
+                <div class="demo-loading" id="demoLoading"><div class="demo-spinner"></div><div class="demo-loading-text" id="demoLoadingText">Planning layout…</div></div>
+                <div class="demo-approval-bar" id="demoApproval">
+                    <span class="demo-apbtn demo-apbtn-good" id="apGood">Looks good</span>
+                    <span class="demo-apbtn demo-apbtn-improve">Improve further</span>
+                    <span class="demo-apbtn demo-apbtn-feedback" id="apFeedback">Give feedback</span>
+                </div>
             </div>
             <div class="demo-actions" id="demoActions"><div class="demo-share-btn">📤 Share</div><div class="demo-save-btn">🔖 Save</div></div>
             <div class="demo-script" id="demoScript"><span>▸ Generated Script</span><span class="demo-stats">486 verts · 512 tris</span></div>
             <div class="demo-tabs"><div class="demo-tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><span>Design</span></div><div class="demo-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg><span>Library</span></div><div class="demo-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4"/></svg><span>Settings</span></div></div>
         </div>
         <div class="demo-desc reveal" id="demoDesc">
-            <div class="demo-step-badge" id="demoBadge">Step 1 · Snap a sketch</div>
-            <h3 id="demoTitle">Photograph your hand-drawn sketch</h3>
-            <p id="demoText">Draw your part idea on paper. Snap a photo right from the app's camera and it gets attached to your design request.</p>
+            <div class="demo-step-badge" id="demoBadge">Step 1 · Describe</div>
+            <h3 id="demoTitle">Type what you want to build</h3>
+            <p id="demoText">Use plain language and millimeters. The demo uses a simple birdhouse — box, hole, and roof.</p>
         </div>
     </div>
     <button class="demo-replay" id="demoReplay" onclick="replayDemo()">▶ Replay Demo</button>
@@ -302,12 +333,12 @@ footer a:hover{color:var(--accent);text-decoration:none}
     <h2 class="section-title reveal">Everything you need to design</h2>
     <p class="section-sub reveal">Professional CAD output without the professional learning curve.</p>
     <div class="features-grid">
-        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3>Text to CAD</h3><p>Describe any part in plain English with dimensions. AI turns your words into precise 3D geometry.</p></div>
-        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>Photo to CAD</h3><p>Photograph a sketch on paper or an existing object. AI recreates it as a real 3D CAD model.</p></div>
-        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><h3>Pro CAD Engine</h3><p>Built on a solid modeling kernel used in professional tools. Real geometry, not rough meshes.</p></div>
-        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><h3>STL &amp; OBJ Export</h3><p>Export for 3D printing (STL) or import into any CAD tool (OBJ). Share directly from the app.</p></div>
-        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></div><h3>Parts Library</h3><p>Save every model you generate. Browse, export, and manage your designs in one place.</p></div>
-        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><h3>iPhone &amp; iPad</h3><p>Optimized layouts for both devices. Side-by-side design view on iPad for a desktop experience.</p></div>
+        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3>Text to CAD</h3><p>Describe parts in plain English with millimeters. AI turns it into real solid geometry.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>Photo to CAD</h3><p>Attach sketches or reference shots. The same pipeline uses them in analyze and generate.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div><h3>Review, improve &amp; feedback</h3><p>Approve, auto-improve from renders, or type changes—revisions include your viewport and mesh stats.</p></div>
+        <div class="feature-card reveal reveal-delay-1"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><h3>Plan → analyze → build</h3><p>JSCAD runs on-device (iOS) or in your browser (web), with automatic repair when scripts error.</p></div>
+        <div class="feature-card reveal reveal-delay-2"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><h3>STL &amp; OBJ</h3><p>Export for any slicer or CAD app. Save to your library on iOS.</p></div>
+        <div class="feature-card reveal reveal-delay-3"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><h3>iOS, iPad &amp; web</h3><p>Native app for iPhone and iPad, plus a full web workspace—same AI backend.</p></div>
     </div>
 </section>
 
@@ -341,14 +372,17 @@ footer a:hover{color:var(--accent);text-decoration:none}
         <div class="period">See the App Store for subscription pricing</div>
         <div class="trial">Free designs included. Cancel anytime.</div>
         <ul class="pricing-features">
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>AI-powered text-to-CAD generation</li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Photo-to-CAD from sketches & objects</li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Iterative AI refinement for better models</li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>STL & OBJ export for 3D printing</li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited parts library storage</li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>iPhone & iPad optimized</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Plan, analyze &amp; generate pipeline (iOS &amp; web)</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Text &amp; photo input, auto-repair loop</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>AI improve + typed feedback with 3D context</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>STL &amp; OBJ export</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Parts library on iOS</li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Clean 3D viewer — bright lighting, no floor plane</li>
         </ul>
-        <a href="https://apps.apple.com/app/designer/id6760601644" class="btn-primary" style="width:100%;justify-content:center">Get Designer+</a>
+        <div style="display:flex;flex-direction:column;gap:12px;width:100%">
+        <a href="https://apps.apple.com/app/designer/id6760601644" class="btn-primary" style="width:100%;justify-content:center">Get Designer+ for iOS</a>
+        <a href="https://designerplus-web.pages.dev/login" class="btn-secondary" style="width:100%;justify-content:center" target="_blank" rel="noopener">Open web app</a>
+        </div>
     </div>
 </section>
 
@@ -369,14 +403,189 @@ resize();draw();addEventListener('resize',resize)})();
 const ro=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');ro.unobserve(el.target)}})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-// Demo animation
-(function(){let started=false,timers=[];const msg='Make a 2 x 4 lego block with 8 studs on top. Standard dimensions: 32mm long, 16mm wide, 12mm tall.';
-function type(el,txt,spd,cb){let i=0;el.innerHTML='';(function t(){if(i<txt.length){el.innerHTML=txt.substring(0,i+1)+'<span class="demo-cursor"></span>';i++;timers.push(setTimeout(t,spd))}else{el.innerHTML=txt+'<span class="demo-cursor"></span>';if(cb)timers.push(setTimeout(cb,300))}}())}
-function desc(b,t,p){const B=document.getElementById('demoBadge'),T=document.getElementById('demoTitle'),P=document.getElementById('demoText');B.style.opacity='0';T.style.opacity='0';P.style.opacity='0';timers.push(setTimeout(()=>{B.textContent=b;T.textContent=t;P.textContent=p;B.style.opacity='1';T.style.opacity='1';P.style.opacity='1'},400))}
-function reset(){timers.forEach(t=>clearTimeout(t));timers=[];['demoThumb','demoModel','demoLoading','demoActions','demoScript'].forEach(id=>{const e=document.getElementById(id);e.classList.remove('visible')});document.getElementById('demoPromptBox').classList.remove('focused');document.getElementById('demoPlaceholder').style.opacity='1';document.getElementById('demoPromptText').innerHTML='';const s=document.getElementById('demoStatus');s.classList.remove('visible');s.textContent='Generating...';s.style.background='';s.style.color='';document.getElementById('demoGenBtn').classList.remove('pressed');document.getElementById('demoVpPlaceholder').style.opacity='1';document.getElementById('demoReplay').classList.remove('visible');const B=document.getElementById('demoBadge'),T=document.getElementById('demoTitle'),P=document.getElementById('demoText');B.style.opacity='1';T.style.opacity='1';P.style.opacity='1';B.textContent='Step 1 · Snap a sketch';T.textContent='Photograph your hand-drawn sketch';P.textContent="Draw your part idea on paper. Snap a photo right from the app's camera and it gets attached to your design request."}
-function run(){reset();timers.push(setTimeout(()=>document.getElementById('demoThumb').classList.add('visible'),1500));timers.push(setTimeout(()=>desc('Step 2 · Describe your part','Type what you want to build','Write your description in plain English. Include dimensions for precision. AI combines your sketch + text to understand exactly what to model.'),3e3));timers.push(setTimeout(()=>{document.getElementById('demoPromptBox').classList.add('focused');document.getElementById('demoPlaceholder').style.opacity='0'},3500));timers.push(setTimeout(()=>type(document.getElementById('demoPromptText'),msg,40,function(){timers.push(setTimeout(()=>{const b=document.getElementById('demoGenBtn');b.classList.add('pressed');timers.push(setTimeout(()=>b.classList.remove('pressed'),200));desc('Step 3 · AI generates','Building your 3D model','The AI analyzes your sketch and description, writes parametric CAD code, then builds real solid geometry.');timers.push(setTimeout(()=>{document.getElementById('demoStatus').classList.add('visible');document.getElementById('demoVpPlaceholder').style.opacity='0';document.getElementById('demoLoading').classList.add('visible');document.getElementById('demoLoadingText').textContent='Analyzing sketch...'},300));timers.push(setTimeout(()=>document.getElementById('demoLoadingText').textContent='Generating CAD script...',2300));timers.push(setTimeout(()=>document.getElementById('demoLoadingText').textContent='Building 3D model...',4300));timers.push(setTimeout(()=>{document.getElementById('demoLoading').classList.remove('visible');document.getElementById('demoModel').classList.add('visible');const c=document.getElementById('demoStatus');c.textContent='Complete';c.style.background='rgba(52,199,89,.1)';c.style.color='#34c759';desc('Ready to export','Your model is ready to print','Export as STL for 3D printing or OBJ for any CAD tool. Save to your library or share directly.');timers.push(setTimeout(()=>document.getElementById('demoActions').classList.add('visible'),500));timers.push(setTimeout(()=>document.getElementById('demoScript').classList.add('visible'),800));timers.push(setTimeout(()=>document.getElementById('demoReplay').classList.add('visible'),1500))},6e3))},600))}),4e3))}
-window.replayDemo=run;
-new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting&&!started){started=true;timers.push(setTimeout(run,500))}})},{threshold:.3}).observe(document.getElementById('demo'))})();
+// Demo animation — birdhouse + typed feedback (matches product flow)
+(function(){
+  const PROMPT = 'Birdhouse: 100mm cube, round entrance on front, overhanging flat roof.';
+  const FEEDBACK = 'Widen the entrance to 45mm';
+  let timers = [];
+  let started = false;
+
+  function wait(ms) {
+    return new Promise(function (resolve) {
+      const t = setTimeout(resolve, ms);
+      timers.push(t);
+    });
+  }
+
+  function clearAllTimers() {
+    timers.forEach(function (id) { clearTimeout(id); });
+    timers = [];
+  }
+
+  function $(id) { return document.getElementById(id); }
+
+  function typePromise(el, text, spd) {
+    return new Promise(function (resolve) {
+      var i = 0;
+      function tick() {
+        if (i < text.length) {
+          i++;
+          el.innerHTML = text.slice(0, i) + '<span class="demo-cursor"></span>';
+          timers.push(setTimeout(tick, spd));
+        } else {
+          el.innerHTML = text;
+          resolve();
+        }
+      }
+      el.innerHTML = '';
+      tick();
+    });
+  }
+
+  function desc(b, t, p) {
+    var B = $('demoBadge'), T = $('demoTitle'), P = $('demoText');
+    B.style.opacity = '0';
+    T.style.opacity = '0';
+    P.style.opacity = '0';
+    return wait(350).then(function () {
+      B.textContent = b;
+      T.textContent = t;
+      P.textContent = p;
+      B.style.opacity = '1';
+      T.style.opacity = '1';
+      P.style.opacity = '1';
+    });
+  }
+
+  function reset() {
+    clearAllTimers();
+    ['demoActions', 'demoScript'].forEach(function (id) {
+      var e = $(id);
+      if (e) e.classList.remove('visible');
+    });
+    $('demoPromptBox').classList.remove('focused');
+    $('demoPlaceholder').style.opacity = '1';
+    $('demoPromptText').innerHTML = '';
+    $('demoFeedbackText').innerHTML = '';
+    $('demoFeedbackWrap').classList.remove('visible');
+    var s = $('demoStatus');
+    s.classList.remove('visible');
+    s.textContent = 'Working…';
+    s.style.background = '';
+    s.style.color = '';
+    $('demoGenBtn').classList.remove('pressed');
+    $('demoVpPlaceholder').style.opacity = '1';
+    $('demoLoading').classList.remove('visible');
+    $('demoBirdhouse').classList.remove('visible');
+    $('demoHole').setAttribute('r', '12');
+    $('demoHole').setAttribute('stroke', '#4fc3f7');
+    $('demoApproval').classList.remove('visible');
+    $('apGood').classList.remove('pressed');
+    $('apFeedback').classList.remove('pressed');
+    $('demoReplay').classList.remove('visible');
+    $('demoThumbArea').classList.add('is-hidden');
+    $('demoThumb').classList.remove('visible');
+    var B = $('demoBadge'), T = $('demoTitle'), P = $('demoText');
+    B.textContent = 'Step 1 · Describe';
+    T.textContent = 'Type what you want to build';
+    P.textContent = 'Use plain language and millimeters. The demo uses a simple birdhouse — box, hole, and roof.';
+    B.style.opacity = '1';
+    T.style.opacity = '1';
+    P.style.opacity = '1';
+  }
+
+  async function run() {
+    reset();
+    await wait(450);
+    await desc('Step 1 · Describe your part', 'Type a simple enclosure', 'e.g. a birdhouse: box, entrance hole, overhanging roof — all in mm.');
+    await wait(500);
+    $('demoPromptBox').classList.add('focused');
+    $('demoPlaceholder').style.opacity = '0';
+    await wait(200);
+    await typePromise($('demoPromptText'), PROMPT, 30);
+    await wait(350);
+    $('demoGenBtn').classList.add('pressed');
+    await wait(160);
+    $('demoGenBtn').classList.remove('pressed');
+
+    await desc('Step 2 · Plan, analyze & build', 'AI runs the full pipeline', 'Planning layout, analyzing the shape, generating JSCAD, then building geometry in the viewer — with auto-repair if needed.');
+    $('demoStatus').classList.add('visible');
+    $('demoVpPlaceholder').style.opacity = '0';
+    $('demoLoading').classList.add('visible');
+
+    var loadStages = [
+      ['Planning layout…', 1000],
+      ['Investigating object…', 1200],
+      ['Generating script…', 1300],
+      ['Building geometry…', 1100]
+    ];
+    for (var j = 0; j < loadStages.length; j++) {
+      $('demoLoadingText').textContent = loadStages[j][0];
+      await wait(loadStages[j][1]);
+    }
+
+    $('demoLoading').classList.remove('visible');
+    $('demoBirdhouse').classList.add('visible');
+    $('demoStatus').textContent = 'Does this look right?';
+    $('demoStatus').style.background = 'rgba(0,113,227,.1)';
+    $('demoStatus').style.color = '#0071e3';
+    $('demoApproval').classList.add('visible');
+    await desc('Step 3 · Refine', 'Give specific feedback', 'Typed revisions send your viewport renders and mesh stats to the AI — so changes stay on target.');
+
+    await wait(2000);
+    $('apFeedback').classList.add('pressed');
+    await wait(550);
+    $('apFeedback').classList.remove('pressed');
+    $('demoApproval').classList.remove('visible');
+    $('demoFeedbackWrap').classList.add('visible');
+    await typePromise($('demoFeedbackText'), FEEDBACK, 32);
+    await wait(450);
+
+    $('demoStatus').textContent = 'Revising…';
+    $('demoLoading').classList.add('visible');
+    $('demoBirdhouse').classList.remove('visible');
+    $('demoVpPlaceholder').style.opacity = '0';
+    $('demoLoadingText').textContent = 'Revising with your 3D view…';
+    await wait(1500);
+    $('demoLoadingText').textContent = 'Rebuilding geometry…';
+    await wait(1100);
+    $('demoLoading').classList.remove('visible');
+    $('demoBirdhouse').classList.add('visible');
+    $('demoHole').setAttribute('r', '20');
+    $('demoHole').setAttribute('stroke', '#34c759');
+
+    $('demoStatus').textContent = 'Updated';
+    $('demoStatus').style.background = 'rgba(52,199,89,.12)';
+    $('demoStatus').style.color = '#34c759';
+    $('demoApproval').classList.add('visible');
+    await wait(700);
+    $('apGood').classList.add('pressed');
+    await wait(450);
+
+    await desc('Step 4 · Export', 'STL or OBJ', 'Send to your slicer or open in any CAD tool. On iOS, save to your parts library.');
+    $('demoApproval').classList.remove('visible');
+    $('demoActions').classList.add('visible');
+    $('demoScript').classList.add('visible');
+    $('demoReplay').classList.add('visible');
+  }
+
+  window.replayDemo = function () {
+    clearAllTimers();
+    run();
+  };
+
+  new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          setTimeout(function () { run(); }, 400);
+        }
+      });
+    },
+    { threshold: 0.22 }
+  ).observe($('demo'));
+})();
 </script>
 </body>
 </html>
